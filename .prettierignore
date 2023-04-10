@@ -1,0 +1,14 @@
+.github
+.husky
+/node_modules
+/public
+.env*
+.eslintrc
+tsconfig.json
+.stylelintrc
+*.MD
+.prettierrc
+package.json
+package-lock.json
+
+*.css
