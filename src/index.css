@@ -1,7 +1,26 @@
+:root {
+  --color-bg: #000;
+  --color-secondary: #61dafb;
+  --color-font: #FFF;
+  
+  --size-logo: 4rem;
+
+  --z-index-top: 10;
+  
+}
+
+
+html {
+  font-size: 62.5%;
+}
+
 body {
+  background-color: var(--color-bg);
+  color: var(--color-font);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+    font-size: 1.6rem;
    margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

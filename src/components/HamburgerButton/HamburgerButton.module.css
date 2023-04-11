@@ -1,0 +1,58 @@
+.hamburger {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: block;
+  height: var(--size-logo);
+  margin: 0;
+  padding: 0;
+}
+  
+  
+ .hamburgerBar {
+    position: relative;
+    }
+
+ .hamburgerBar::before,
+ .hamburgerBar::after {
+  content: "";
+  position: absolute;
+}
+
+.hamburgerBar, .hamburgerBar::before,
+.hamburgerBar::after {
+  background-color: var(--color-secondary);
+  display: block;
+  height: 0.3rem;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  width: 2.5rem;
+}
+
+
+.hamburgerBar::before {
+  top: -.8rem;
+}
+
+.hamburgerBar::after {
+  bottom: -.8rem;
+}
+
+.hamburger.isActive .hamburgerBar{
+  background-color: transparent; 
+}
+
+.hamburger.isActive .hamburgerBar::before{
+  top:0;  
+  transform: rotate(45deg);
+}
+
+.hamburger.isActive .hamburgerBar::after{
+  bottom:0;
+  transform: rotate(-45deg);
+}
+
+
+ 
+
+
