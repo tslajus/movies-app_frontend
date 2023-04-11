@@ -1,0 +1,24 @@
+import { useState, useEffect } from 'react';
+
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(`(max-width: ${query})`);
+    setMatches(media.matches);
+
+    const listener = (e: MediaQueryListEvent) => {
+      setMatches(e.matches);
+    };
+
+    media.addEventListener('change', listener);
+
+    return () => {
+      media.removeEventListener('change', listener);
+    };
+  }, [query]);
+
+  return matches;
+}
+
+export default useMediaQuery;

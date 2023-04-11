@@ -1,16 +1,17 @@
-import { useQuery } from '@tanstack/react-query';
-import { fetchStatus } from 'api/health';
+import { ReactNode } from 'react';
 
 import { Header, Footer } from '../';
 import styles from './Layout.module.css';
 
-function Layout() {
-  const { data: healthy } = useQuery(['status'], fetchStatus);
+type Props = {
+  children: ReactNode;
+};
 
+function Layout({ children }: Props) {
   return (
     <div className={styles.container}>
       <Header />
-      <main className={styles.content}>API status: {healthy ? 'is running' : 'something is wrong'}</main>
+      {children}
       <Footer />
     </div>
   );

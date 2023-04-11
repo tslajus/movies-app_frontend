@@ -12,3 +12,29 @@
 .icon {
     height: var(--size-logo);
 }
+
+.navList {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+   }
+
+.navListSmall {
+    flex-direction: column;
+}
+
+.navLink, .navLinkActive {
+    color: var(--color-font);
+    margin: 1.5rem 2rem; 
+    text-decoration: none;
+}
+
+.navLink:hover, .navLinkActive {
+    filter: brightness(90%);
+    text-decoration: underline;
+    text-decoration-color: var(--color-secondary);
+    text-decoration-thickness: 2px;
+    text-underline-offset: .2rem;
+
+}
+
