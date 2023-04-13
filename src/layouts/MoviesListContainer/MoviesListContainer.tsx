@@ -20,7 +20,23 @@ function MoviesListContainer() {
 
   return (
     <div className={styles.container}>
-      <MovieListItem data={movies[2]} />
+      <div className={styles.list}>
+        {movies.map((movie) => {
+          return <MovieListItem data={movie} key={movie.movieId} />;
+        })}
+        {movies.map((movie) => {
+          return <MovieListItem data={movie} key={movie.movieId} />;
+        })}
+        {movies.map((movie) => {
+          return <MovieListItem data={movie} key={movie.movieId} />;
+        })}
+        {movies.map((movie) => {
+          return <MovieListItem data={movie} key={movie.movieId} />;
+        })}
+        {movies.map((movie) => {
+          return <MovieListItem data={movie} key={movie.movieId} />;
+        })}
+      </div>
     </div>
   );
 }

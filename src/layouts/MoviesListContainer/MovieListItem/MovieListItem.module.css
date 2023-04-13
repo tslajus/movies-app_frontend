@@ -1,4 +1,4 @@
-.movieCard {
+.card {
     border: 1px solid var(--color-grey);
     border-radius: 3px;
     display: flex;
@@ -11,19 +11,22 @@
     transition: all .5s;
 }
 
-.movieCard:hover {
+.card:hover {
     border: 1px solid var(--color-secondary); 
     transform: translateY(-.1rem);
 }
 
 
-.movieCard img {
+.card img {
     max-width: 100%;
 }
 
 .movieInfo {
+    align-items: start;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
     padding: .5rem 1rem;
 }
 
