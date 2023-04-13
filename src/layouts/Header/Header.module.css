@@ -1,6 +1,6 @@
 .header {
     align-items: center;
-    background-color: var(--color-bg);
+    backdrop-filter: saturate(200%) blur(4rem);
     display: flex;
     justify-content: space-between;
     padding: .5rem 5rem;
@@ -16,7 +16,7 @@
 .navList {
     display: flex;
     list-style-type: none;
-    margin: 0;
+    margin-left: 4rem;
    }
 
 .navListSmall {

@@ -35,11 +35,13 @@ function Header() {
   const renderedHeader = isSmallScreen ? <HamburgerBtn isActive={isHamburgerOpen} onClick={handleClick} /> : renderedNav;
 
   return (
-    <header className={styles.header}>
-      <MyMoviesLogo className={styles.icon} />
-      {renderedHeader}
+    <>
+      <header className={styles.header}>
+        <MyMoviesLogo className={styles.icon} />
+        {renderedHeader}
+      </header>
       {isHamburgerOpen && <Sidebar onBackdropClick={handleClick}>{renderedNav}</Sidebar>}
-    </header>
+    </>
   );
 }
 
