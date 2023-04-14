@@ -2,10 +2,10 @@ import { StarIcon } from 'components/Icons';
 
 import styles from './MovieCard.module.css';
 
-function MovieCard({ data }: { data: Movie }) {
+function MovieCard({ data, movieId }: { data: Movie; movieId: number | string }) {
   return (
     <div className={styles.card}>
-      <a href="#">
+      <a href={`/movies/${movieId}`}>
         <img alt={data.title} src={data.posterPath} />
       </a>
 

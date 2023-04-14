@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchMovies } from 'api/movies';
 import { Loader, MovieCard } from 'components';
 
-import styles from './MoviesListContainer.module.css';
+import styles from './MoviesList.module.css';
 
-function MoviesListContainer() {
+function MoviesList() {
   const { data } = useQuery(['movies'], fetchMovies);
 
   if (!data) {
@@ -21,10 +21,10 @@ function MoviesListContainer() {
     <div className={styles.container}>
       <div className={styles.list}>
         {movies.map((movie) => {
-          return <MovieCard data={movie} key={movie.movieId} />;
+          return <MovieCard data={movie} key={movie.movieId} movieId={movie.movieId} />;
         })}
       </div>
     </div>
   );
 }
-export default MoviesListContainer;
+export default MoviesList;

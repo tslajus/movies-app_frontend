@@ -1,0 +1,10 @@
+.description {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+}
+
+.description h3 {
+    font-size: 1.7rem;
+}

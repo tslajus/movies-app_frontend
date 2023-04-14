@@ -1,0 +1,10 @@
+.row {
+    align-items: start;
+    display: flex;
+    font-size: 1.4rem;
+    gap: 0;
+}
+
+.row dd {
+    margin-left: .5rem;
+}

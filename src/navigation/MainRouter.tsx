@@ -1,13 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
-import { MoviesListContainer } from 'layouts';
+import { MoviesList, MovieInfo } from 'containers';
 
 import { ROUTES } from './routes';
 
 const MainRouter: React.FC = () => {
   return (
     <Routes>
-      <Route element={<MoviesListContainer />} path={ROUTES.INDEX} />
-      <Route element={<MoviesListContainer />} path={ROUTES.MOVIES} />
+      <Route element={<MoviesList />} path={ROUTES.INDEX} />
+      <Route element={<MoviesList />} path={ROUTES.MOVIES} />
+      <Route element={<MovieInfo />} path={ROUTES.MOVIE} />
     </Routes>
   );
 };

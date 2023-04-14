@@ -19,14 +19,15 @@ function Header() {
   }, [isSmallScreen]);
 
   const handleClick = () => setIsHamburgerOpen(!isHamburgerOpen);
+  const handleCloseSidebar = () => setIsHamburgerOpen(false);
 
   const NavLinkClass = ({ isActive }: { isActive: boolean }) => (isActive ? `${styles.navLinkActive}` : `${styles.navLink}`);
   const renderedNav = (
     <nav className={`${styles.navList} ${isSmallScreen && styles.navListSmall}`} id="sidebar">
-      <NavLink className={NavLinkClass} to={ROUTES.MOVIES}>
+      <NavLink className={NavLinkClass} to={ROUTES.MOVIES} onClick={handleCloseSidebar}>
         Movies
       </NavLink>
-      <NavLink className={NavLinkClass} to={ROUTES.LOGIN}>
+      <NavLink className={NavLinkClass} to={ROUTES.LOGIN} onClick={handleCloseSidebar}>
         Sign in/up
       </NavLink>
     </nav>
