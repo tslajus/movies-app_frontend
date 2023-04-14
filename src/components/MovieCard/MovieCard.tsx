@@ -1,8 +1,8 @@
 import { StarIcon } from 'components/Icons';
 
-import styles from './MovieListItem.module.css';
+import styles from './MovieCard.module.css';
 
-function MovieListItem({ data }: { data: Movie }) {
+function MovieCard({ data }: { data: Movie }) {
   return (
     <div className={styles.card}>
       <a href="#">
@@ -24,4 +24,4 @@ function MovieListItem({ data }: { data: Movie }) {
   );
 }
 
-export { MovieListItem };
+export default MovieCard;
