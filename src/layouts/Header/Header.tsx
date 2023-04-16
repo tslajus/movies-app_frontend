@@ -38,7 +38,9 @@ function Header() {
   return (
     <>
       <header className={styles.header}>
-        <MyMoviesLogo className={styles.icon} />
+        <NavLink to={ROUTES.MOVIES}>
+          <MyMoviesLogo className={styles.icon} />
+        </NavLink>
         {renderedHeader}
       </header>
       {isHamburgerOpen && <Sidebar onBackdropClick={handleClick}>{renderedNav}</Sidebar>}

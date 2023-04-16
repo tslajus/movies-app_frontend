@@ -34,3 +34,9 @@ type MovieDetails = Movie & {
   title: string;
   voteCount: number;
 };
+
+type Pagination = {
+  currentPage: number;
+  totalPageCount: number;
+  siblingCount?: number;
+};
