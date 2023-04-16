@@ -67,4 +67,22 @@
 
 
 
+@media screen and (max-width: 576px) {
+    .item {
+       height: 2rem;
+        margin: .4rem;
+        min-width: 2rem;
+      }
 
+    .dots {
+        width: 2rem;
+    }
+
+    .btn {
+        font-size: 1.4rem;
+    }
+
+    .btn svg {
+        height: 1rem;
+    }
+  }
