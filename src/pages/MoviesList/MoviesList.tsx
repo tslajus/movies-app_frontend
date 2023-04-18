@@ -3,8 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchMovies } from 'api/movies';
 import { Loader, MovieCard } from 'components';
 import { Pagination } from 'features';
-
-import styles from './MoviesList.module.css';
+import { List } from 'layouts';
 
 function MoviesList() {
   const navigate = useNavigate();
@@ -27,16 +26,16 @@ function MoviesList() {
   }
 
   const movies = data.movies;
+  const renderedMovies = movies.map((movie) => {
+    return <MovieCard data={movie} key={movie.movieId} movieId={movie.movieId} />;
+  });
 
   return (
-    <div className={styles.container}>
-      <div className={styles.list}>
-        {movies.map((movie) => {
-          return <MovieCard data={movie} key={movie.movieId} movieId={movie.movieId} />;
-        })}
-      </div>
+    <main>
+      <List>{renderedMovies}</List>
       <Pagination currentPage={activePage} totalPageCount={data.totalPages} onPageChange={handlePageChange} />
-    </div>
+    </main>
   );
 }
+
 export default MoviesList;

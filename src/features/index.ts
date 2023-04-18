@@ -1,1 +1,2 @@
-export { default as Pagination } from '../features/Pagination/Pagination';
+export { default as Pagination } from './Pagination/Pagination';
+export { default as InfoBox } from './InfoBox/InfoBox';

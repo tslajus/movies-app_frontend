@@ -45,3 +45,15 @@ type Button = {
   text: string;
   type?: 'button' | 'submit' | 'reset';
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+type Company = {
+  originCountry: string;
+  logoPath: string;
+  id: number;
+  name: string;
+};
+
+type Genre = {
+  id: number;
+  name: string;
+};

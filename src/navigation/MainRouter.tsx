@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { MoviesList, MovieInfo } from 'containers';
+import { MoviesList, MovieInfo } from 'pages';
 
 import { ROUTES } from './routes';
 
