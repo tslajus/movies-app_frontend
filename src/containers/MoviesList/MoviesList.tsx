@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchMovies } from 'api/movies';
-import { Loader, MovieCard, Pagination } from 'components';
+import { Loader, MovieCard } from 'components';
+import { Pagination } from 'features';
 
 import styles from './MoviesList.module.css';
 
