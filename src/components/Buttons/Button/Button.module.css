@@ -1,0 +1,15 @@
+.btn {
+    background-color: var(--color-secondary);
+    border: none;
+    border-radius: 3px;
+    color: var(--color-font-dark);
+    cursor: pointer;
+    display: inline-block;
+    font: inherit;
+    padding: 1rem 1.5rem;
+    width: fit-content;
+}
+
+.btn:hover {
+    filter: brightness(90%);
+}

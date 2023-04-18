@@ -40,3 +40,8 @@ type Pagination = {
   totalPageCount: number;
   siblingCount?: number;
 };
+
+type Button = {
+  text: string;
+  type?: 'button' | 'submit' | 'reset';
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
