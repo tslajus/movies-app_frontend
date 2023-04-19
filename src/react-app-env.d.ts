@@ -57,3 +57,19 @@ type Genre = {
   id: number;
   name: string;
 };
+
+type TextInput = {
+  placeholder?: string;
+  value?: string;
+} & React.InputHTMLAttributes<HTMLInputElement>;
+
+type SelectField = {
+  placeholder?: string;
+  isMulti?: boolean;
+  options: Option[];
+};
+
+type Option = {
+  value: string;
+  label: string;
+};

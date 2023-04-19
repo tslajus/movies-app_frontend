@@ -1,0 +1,16 @@
+.inputField {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-font);
+    border-radius: 3px;
+    color: var(--color-font);
+    padding: 1rem 1.5rem;
+}
+
+.inputField::placeholder {
+    color: var(--color-placeholder);
+}
+
+.inputField:active, .inputField:focus {
+    border: 1px solid var(--color-secondary);
+    outline: 1px solid var(--color-secondary);
+}

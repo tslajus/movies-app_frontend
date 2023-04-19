@@ -6,6 +6,7 @@
     cursor: pointer;
     display: inline-block;
     font: inherit;
+    height: fit-content;
     padding: 1rem 1.5rem;
     width: fit-content;
 }
