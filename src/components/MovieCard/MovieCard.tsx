@@ -13,7 +13,7 @@ function MovieCard({ data, movieId }: { data: Movie; movieId: number | string })
         <div>
           <div className={styles.rating}>
             <StarIcon className={styles.ratingIcon} />
-            <p className={styles.ratingAverage}>{data.voteAverage}</p>
+            <p className={styles.ratingAverage}>{Math.round(data.voteAverage * 10) / 10}</p>
           </div>
           <p className={styles.title}>{data.title}</p>
         </div>

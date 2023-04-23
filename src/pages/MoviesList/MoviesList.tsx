@@ -9,12 +9,16 @@ function MoviesList() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const activePage = Number(searchParams.get('page')) || 1;
-  const { data } = useQuery(['movies', activePage], () => fetchMovies(activePage), { keepPreviousData: true });
+  const title = searchParams.get('title') || '';
+  const genres = searchParams.get('genres') || '';
+  const sort = searchParams.get('sort') || '';
 
-  const handlePageChange = async (selectedPage: number) => {
-    navigate(`/?page=${selectedPage}`);
-    const movies = await fetchMovies(selectedPage);
-    return movies;
+  const { data } = useQuery(['movies', activePage, title, genres, sort], () => fetchMovies(activePage, title, genres, sort), { keepPreviousData: true });
+
+  const handlePageChange = async (selectedPage: number, filters: Record<string, string>) => {
+    const queryParams = new URLSearchParams(filters);
+    queryParams.set('page', String(selectedPage));
+    navigate(`/?${queryParams.toString()}`);
   };
 
   if (!data) {
@@ -26,6 +30,7 @@ function MoviesList() {
   }
 
   const movies = data.movies;
+
   const renderedMovies = movies.map((movie) => {
     return <MovieCard data={movie} key={movie.movieId} movieId={movie.movieId} />;
   });
@@ -34,7 +39,7 @@ function MoviesList() {
     <main>
       <ListFilters />
       <List>{renderedMovies}</List>
-      <Pagination currentPage={activePage} totalPageCount={data.totalPages} onPageChange={handlePageChange} />
+      <Pagination currentPage={activePage} filters={{ title, genres, sort }} totalPageCount={data.totalPages} onPageChange={handlePageChange} />
     </main>
   );
 }

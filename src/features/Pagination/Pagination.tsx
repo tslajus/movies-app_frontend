@@ -4,25 +4,26 @@ import usePagination, { DOTS } from '../../hooks/usePagination';
 import styles from './Pagination.module.css';
 
 type Props = Pagination & {
-  onPageChange: (selectedPage: number) => void;
+  onPageChange: (selectedPage: number, filters: Record<string, string>) => void;
+  filters: Record<string, string>;
 };
 
-function Pagination({ currentPage, totalPageCount, siblingCount = 1, onPageChange }: Props) {
+function Pagination({ currentPage, totalPageCount, siblingCount = 1, onPageChange, filters }: Props) {
   const paginationRange = usePagination({ currentPage, totalPageCount, siblingCount });
 
   const handlePageChange = (selectedPage: number) => {
-    onPageChange(Number(selectedPage));
+    onPageChange(Number(selectedPage), filters);
   };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
-      onPageChange(currentPage - 1);
+      onPageChange(currentPage - 1, filters);
     }
   };
 
   const handleNextPage = () => {
     if (currentPage < totalPageCount) {
-      onPageChange(currentPage + 1);
+      onPageChange(currentPage + 1, filters);
     }
   };
 

@@ -25,7 +25,6 @@ type Styles = {
 
 export const selectFieldStyles: Styles = {
   clearIndicator: (styles) => ({ ...styles, display: 'none' }),
-  container: (styles) => ({ ...styles, flex: '1', zIndex: '-1' }),
   control: (styles, state) => ({
     ...styles,
     backgroundColor: 'var(--color-bg)',

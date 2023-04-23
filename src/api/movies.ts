@@ -1,7 +1,7 @@
 import { get } from './shared/methods';
 
-export async function fetchMovies(page: number): Promise<Movies> {
-  const { data } = await get<Movies>(`movies?page=${page}`);
+export async function fetchMovies(page: number, title?: string, genres?: string, sort?: string): Promise<Movies> {
+  const { data } = await get<Movies>(`movies?page=${page}${title ? `&title=${title}` : ''}${genres ? `&genres=${genres}` : ''}${sort ? `&sort=${sort}` : ''}`);
   return data;
 }
 

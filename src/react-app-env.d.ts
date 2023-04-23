@@ -58,18 +58,32 @@ type Genre = {
   name: string;
 };
 
-type TextInput = {
-  placeholder?: string;
-  value?: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
-
-type SelectField = {
-  placeholder?: string;
-  isMulti?: boolean;
-  options: Option[];
+type SortOption = {
+  code: string;
+  name: string;
 };
 
 type Option = {
   value: string;
   label: string;
 };
+
+type FieldInput = {
+  name: string;
+  placeholder?: string;
+};
+
+type Field = FieldInput & {
+  onBlur: () => void;
+  onFocus: () => void;
+  value: any;
+};
+
+type SelectField = FieldInput & {
+  isMulti?: boolean;
+  options: Option[];
+  name?: string;
+  form?: Form;
+};
+
+type Form = FormikProps<{ [key: string]: any }>;
