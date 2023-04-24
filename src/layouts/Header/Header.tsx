@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useMediaQuery } from 'hooks';
 import { MyMoviesLogo } from 'components/Icons';
-import { HamburgerBtn } from 'components';
+import { HamburgerBtn, Modal } from 'components';
 import { NavLink } from 'react-router-dom';
 
 import { ROUTES } from '../../navigation/routes';
@@ -10,6 +10,8 @@ import styles from './Header.module.css';
 
 function Header() {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const isSmallScreen = useMediaQuery('768px');
 
   useEffect(() => {
@@ -18,8 +20,19 @@ function Header() {
     }
   }, [isSmallScreen]);
 
-  const handleClick = () => setIsHamburgerOpen(!isHamburgerOpen);
+  useEffect(() => {
+    if (!isHamburgerOpen) {
+      setIsModalOpen(false);
+    }
+  }, [isHamburgerOpen]);
+
+  const handleHamburgerClick = () => {
+    setIsHamburgerOpen(!isHamburgerOpen);
+  };
   const handleCloseSidebar = () => setIsHamburgerOpen(false);
+  const handleClickSignIn = () => {
+    setIsModalOpen(true);
+  };
 
   const NavLinkClass = ({ isActive }: { isActive: boolean }) => (isActive ? `${styles.navLinkActive}` : `${styles.navLink}`);
   const renderedNav = (
@@ -27,13 +40,13 @@ function Header() {
       <NavLink className={NavLinkClass} to={ROUTES.MOVIES} onClick={handleCloseSidebar}>
         Movies
       </NavLink>
-      <NavLink className={NavLinkClass} to={ROUTES.LOGIN} onClick={handleCloseSidebar}>
+      <button className={styles.btn} onClick={handleClickSignIn}>
         Sign in/up
-      </NavLink>
+      </button>
     </nav>
   );
 
-  const renderedHeader = isSmallScreen ? <HamburgerBtn isActive={isHamburgerOpen} onClick={handleClick} /> : renderedNav;
+  const renderedHeader = isSmallScreen ? <HamburgerBtn isActive={isHamburgerOpen} onClick={handleHamburgerClick} /> : renderedNav;
 
   return (
     <>
@@ -43,7 +56,15 @@ function Header() {
         </NavLink>
         {renderedHeader}
       </header>
-      {isHamburgerOpen && <Sidebar onBackdropClick={handleClick}>{renderedNav}</Sidebar>}
+
+      {isHamburgerOpen && <Sidebar onBackdropClick={handleHamburgerClick}>{renderedNav}</Sidebar>}
+
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
+          <h2>My Modal</h2>
+          <p>Modal content goes here</p>
+        </Modal>
+      )}
     </>
   );
 }

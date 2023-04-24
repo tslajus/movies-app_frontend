@@ -4,6 +4,7 @@ export { default as Loader } from './Loader/Loader';
 export { default as MovieCard } from './MovieCard/MovieCard';
 export { default as StatLine } from './StatLine/StatLine';
 export { default as Tag } from './Tag/Tag';
+export { default as Modal } from './Modal/Modal';
 export { default as DescriptionBox } from './DescriptionBox/DescriptionBox';
 export { default as TextInputField } from './Inputs/TextInputField/TextInputField';
 export { default as SelectField } from './Inputs/SelectField/SelectField';
