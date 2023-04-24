@@ -1,0 +1,49 @@
+.form {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 30rem;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.fields {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+}
+
+.footer {
+    /* gap: 1rem; */
+    align-items: center;
+    display: flex;
+    justify-content: end;
+}
+
+.question {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.toggleBtn {
+    background: none;
+    border: none;
+    color: var(--color-font);
+    cursor: pointer;
+    font: inherit;
+    margin-left: 0.5rem;
+    padding: 0;
+}
+
+.toggleBtn:hover {
+    color: var(--color-placeholder);
+    text-decoration: underline;
+}

@@ -23,31 +23,6 @@
     flex-direction: column;
 }
 
-.navLink, .navLinkActive {
-    color: var(--color-font);
-    margin: 1.5rem 2rem; 
-    text-decoration: none;
-}
 
-.btn {
-    align-self: start;
-    background: transparent;
-    border: none;
-    color: var(--color-font);
-    cursor: pointer;
-    font: inherit;
-    margin: 1.5rem 2rem;
-    padding: 0; 
-    text-decoration: none;
-    width: auto;
-}
-
-.navLink:hover, .navLinkActive, .btn:hover {
-    filter: brightness(90%);
-    text-decoration: underline;
-    text-decoration-color: var(--color-secondary);
-    text-decoration-thickness: 2px;
-    text-underline-offset: .2rem;
-}
 
 

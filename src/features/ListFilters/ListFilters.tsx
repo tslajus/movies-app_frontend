@@ -60,7 +60,7 @@ function ListFilters() {
     >
       {({ setFieldValue }) => (
         <Form className={styles.form}>
-          <InputController control="textInput" name="title" placeholder="Enter movie title" />
+          <InputController control="textInput" name="title" placeholder="Enter movie title" type="text" />
           <InputController control="select" name="genres" options={genreOptions} placeholder="Select genre" isMulti />
           <InputController control="select" name="sort" options={sortOptions} placeholder="Select sorting" />
 

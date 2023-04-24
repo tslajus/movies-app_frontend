@@ -1,5 +1,6 @@
 export { default as HamburgerBtn } from './Buttons/HamburgerButton/HamburgerButton';
 export { default as Button } from './Buttons/Button/Button';
+export { default as ButtonUnderline } from './Buttons/ButtonUnderline/ButtonUnderline';
 export { default as Loader } from './Loader/Loader';
 export { default as MovieCard } from './MovieCard/MovieCard';
 export { default as StatLine } from './StatLine/StatLine';

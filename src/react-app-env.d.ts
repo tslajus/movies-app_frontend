@@ -68,15 +68,42 @@ type Option = {
   label: string;
 };
 
+type SignUp = {
+  name?: string;
+  email?: string;
+  password?: string;
+};
+
+type Login = {
+  email?: string;
+  password?: string;
+};
+
+type UserFormValues = {
+  name?: string;
+  email: string;
+  password: string;
+};
+
 type FieldInput = {
   name: string;
   placeholder?: string;
+  label?: string;
+  touched?: boolean;
+  error?: string | undefined;
 };
 
 type Field = FieldInput & {
   onBlur: () => void;
   onFocus: () => void;
   value: any;
+};
+
+type TextInput = React.InputHTMLAttributes<HTMLInputElement> & {
+  field: Field;
+  label?: string;
+  touched?: boolean;
+  error?: string | undefined;
 };
 
 type SelectField = FieldInput & {
@@ -87,3 +114,12 @@ type SelectField = FieldInput & {
 };
 
 type Form = FormikProps<{ [key: string]: any }>;
+
+type InputController = FieldInput & {
+  control: 'textInput' | 'select';
+  options?: Option[];
+  isMulti?: boolean;
+  type?: string;
+  touched?: boolean;
+  error?: string | undefined;
+};

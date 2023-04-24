@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useMediaQuery } from 'hooks';
 import { MyMoviesLogo } from 'components/Icons';
-import { HamburgerBtn, Modal } from 'components';
+import { HamburgerBtn, ButtonUnderline, Modal } from 'components';
 import { NavLink } from 'react-router-dom';
+import { UserForm } from 'features';
 
 import { ROUTES } from '../../navigation/routes';
 import { Sidebar } from '../';
@@ -34,15 +35,10 @@ function Header() {
     setIsModalOpen(true);
   };
 
-  const NavLinkClass = ({ isActive }: { isActive: boolean }) => (isActive ? `${styles.navLinkActive}` : `${styles.navLink}`);
   const renderedNav = (
     <nav className={`${styles.navList} ${isSmallScreen && styles.navListSmall}`} id="sidebar">
-      <NavLink className={NavLinkClass} to={ROUTES.MOVIES} onClick={handleCloseSidebar}>
-        Movies
-      </NavLink>
-      <button className={styles.btn} onClick={handleClickSignIn}>
-        Sign in/up
-      </button>
+      <ButtonUnderline text="Movies" to={ROUTES.MOVIES} isNav onClick={handleCloseSidebar} />
+      <ButtonUnderline text="Sign in/up" onClick={handleClickSignIn} />
     </nav>
   );
 
@@ -61,8 +57,7 @@ function Header() {
 
       {isModalOpen && (
         <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
-          <h2>My Modal</h2>
-          <p>Modal content goes here</p>
+          <UserForm closeModal={() => setIsModalOpen(false)} />
         </Modal>
       )}
     </>

@@ -1,11 +1,17 @@
 import styles from './TextInputField.module.css';
 
-type TextInput = React.InputHTMLAttributes<HTMLInputElement> & {
-  field: Field;
-};
-
-function TextInputBase({ field, placeholder = '', ...rest }: TextInput) {
-  return <input className={styles.inputField} placeholder={placeholder} type="text" {...field} {...rest} />;
+function TextInputBase({ field, label, placeholder = '', error, touched, ...rest }: TextInput) {
+  return (
+    <div className={styles.input}>
+      {label && (
+        <label className={styles.label} htmlFor={field.name}>
+          {label}
+        </label>
+      )}
+      <input className={styles.inputField} placeholder={placeholder} {...field} {...rest} />
+      {touched && error && <span className={styles.error}>{error}</span>}
+    </div>
+  );
 }
 
 export default TextInputBase;
