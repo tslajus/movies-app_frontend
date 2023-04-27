@@ -1,12 +1,15 @@
 import { Layout } from 'layouts';
 import MainRouter from 'navigation/MainRouter';
+import { ProfileProvider } from 'providers/ProfileProvider';
 
 function App(): JSX.Element {
   return (
     <div>
-      <Layout>
-        <MainRouter />
-      </Layout>
+      <ProfileProvider>
+        <Layout>
+          <MainRouter />
+        </Layout>
+      </ProfileProvider>
     </div>
   );
 }

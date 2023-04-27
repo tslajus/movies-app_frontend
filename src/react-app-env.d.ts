@@ -69,14 +69,14 @@ type Option = {
 };
 
 type SignUp = {
-  name?: string;
-  email?: string;
-  password?: string;
+  name: string;
+  email: string;
+  password: string;
 };
 
 type Login = {
-  email?: string;
-  password?: string;
+  email: string;
+  password: string;
 };
 
 type UserFormValues = {

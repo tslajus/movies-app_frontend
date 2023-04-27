@@ -8,8 +8,11 @@
 }
 
 .header {
+    align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    gap: 1rem;
 }
 
 .fields {
@@ -22,7 +25,6 @@
 }
 
 .footer {
-    /* gap: 1rem; */
     align-items: center;
     display: flex;
     justify-content: end;
@@ -46,4 +48,13 @@
 .toggleBtn:hover {
     color: var(--color-placeholder);
     text-decoration: underline;
+}
+
+.error {
+    color: var(--color-red);
+    font-size: 1.4rem;
+}
+
+.welcome {
+    font-size: 1.2rem;
 }

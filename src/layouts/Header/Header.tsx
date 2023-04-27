@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useProfile } from 'providers/ProfileProvider';
 import { useMediaQuery } from 'hooks';
 import { MyMoviesLogo } from 'components/Icons';
 import { HamburgerBtn, ButtonUnderline, Modal } from 'components';
@@ -12,6 +13,7 @@ import styles from './Header.module.css';
 function Header() {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { signedIn, logout } = useProfile();
 
   const isSmallScreen = useMediaQuery('768px');
 
@@ -35,10 +37,15 @@ function Header() {
     setIsModalOpen(true);
   };
 
+  const handleClickLogout = () => {
+    logout();
+  };
+
   const renderedNav = (
     <nav className={`${styles.navList} ${isSmallScreen && styles.navListSmall}`} id="sidebar">
       <ButtonUnderline text="Movies" to={ROUTES.MOVIES} isNav onClick={handleCloseSidebar} />
-      <ButtonUnderline text="Sign in/up" onClick={handleClickSignIn} />
+      {signedIn && <ButtonUnderline text="My Movies" />}
+      {signedIn ? <ButtonUnderline text="Logout" onClick={handleClickLogout} /> : <ButtonUnderline text="Sign in/up" onClick={handleClickSignIn} />}
     </nav>
   );
 

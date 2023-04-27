@@ -2,7 +2,11 @@ import { InputController } from 'components';
 import * as Yup from 'yup';
 
 type SignUpFieldsProps = {
-  errors: SignUp;
+  errors: {
+    name?: string;
+    email?: string;
+    password?: string;
+  };
   touched: {
     name?: boolean;
     email?: boolean;
