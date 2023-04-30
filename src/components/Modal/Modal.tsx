@@ -9,7 +9,7 @@ type ModalProps = {
 function Modal({ isOpen, setIsOpen, children }: ModalProps) {
   return (
     <>
-      <div className={isOpen ? styles.background : ''} onClick={() => setIsOpen(false)} />
+      {isOpen && <div className={styles.background} onClick={() => setIsOpen(false)} />}
       {isOpen && <div className={styles.box}>{children}</div>}
     </>
   );

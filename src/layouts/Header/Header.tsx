@@ -33,6 +33,7 @@ function Header() {
     setIsHamburgerOpen(!isHamburgerOpen);
   };
   const handleCloseSidebar = () => setIsHamburgerOpen(false);
+
   const handleClickSignIn = () => {
     setIsModalOpen(true);
   };
@@ -45,7 +46,11 @@ function Header() {
     <nav className={`${styles.navList} ${isSmallScreen && styles.navListSmall}`} id="sidebar">
       <ButtonUnderline text="Movies" to={ROUTES.MOVIES} isNav onClick={handleCloseSidebar} />
       {signedIn && <ButtonUnderline text="My Movies" to={ROUTES.MY_MOVIES} isNav onClick={handleCloseSidebar} />}
-      {signedIn ? <ButtonUnderline text="Logout" onClick={handleClickLogout} /> : <ButtonUnderline text="Sign in/up" onClick={handleClickSignIn} />}
+      {signedIn ? (
+        <ButtonUnderline text="Logout" to={ROUTES.MOVIES} isNav onClick={handleClickLogout} />
+      ) : (
+        <ButtonUnderline text="Sign in/up" onClick={handleClickSignIn} />
+      )}
     </nav>
   );
 
@@ -54,7 +59,7 @@ function Header() {
   return (
     <>
       <header className={styles.header}>
-        <NavLink to={ROUTES.MOVIES}>
+        <NavLink to={ROUTES.INDEX}>
           <MyMoviesLogo className={styles.icon} />
         </NavLink>
         {renderedHeader}
