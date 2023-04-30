@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    
+}
+
+.noMoviesText {
+    height: 100%;
+    text-align: center;
+   
+}

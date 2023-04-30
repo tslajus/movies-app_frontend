@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchMovies } from 'api/movies';
@@ -9,13 +10,28 @@ function MoviesList() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const activePage = Number(searchParams.get('page')) || 1;
-  const title = searchParams.get('title') || '';
-  const genres = searchParams.get('genres') || '';
-  const sort = searchParams.get('sort') || '';
 
-  const { data } = useQuery(['movies', activePage, title, genres, sort], () => fetchMovies(activePage, title, genres, sort), { keepPreviousData: true });
+  const [filters, setFilters] = useState({
+    title: searchParams.get('title') || '',
+    genres: searchParams.get('genres') || '',
+    sort: searchParams.get('sort') || '',
+  });
 
-  const handlePageChange = async (selectedPage: number, filters: Record<string, string>) => {
+  useEffect(() => {
+    setFilters({
+      title: searchParams.get('title') || '',
+      genres: searchParams.get('genres') || '',
+      sort: searchParams.get('sort') || '',
+    });
+  }, [searchParams]);
+
+  const { data } = useQuery(
+    ['movies', activePage, filters.title, filters.genres, filters.sort],
+    () => fetchMovies(activePage, filters.title, filters.genres, filters.sort),
+    { keepPreviousData: true },
+  );
+
+  const handlePageChange = async (selectedPage: number) => {
     const queryParams = new URLSearchParams(filters);
     queryParams.set('page', String(selectedPage));
     navigate(`/?${queryParams.toString()}`);
@@ -39,7 +55,7 @@ function MoviesList() {
     <main>
       <ListFilters />
       <List>{renderedMovies}</List>
-      <Pagination currentPage={activePage} filters={{ title, genres, sort }} totalPageCount={data.totalPages} onPageChange={handlePageChange} />
+      <Pagination currentPage={activePage} totalPageCount={data.totalPages} onPageChange={handlePageChange} />
     </main>
   );
 }

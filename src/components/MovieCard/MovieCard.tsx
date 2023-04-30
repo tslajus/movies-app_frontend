@@ -1,8 +1,27 @@
 import { StarIcon } from 'components/Icons';
+import { useProfile } from 'providers/ProfileProvider';
 
+import { Favorite } from '../';
 import styles from './MovieCard.module.css';
 
-function MovieCard({ data, movieId }: { data: Movie; movieId: number | string }) {
+type MovieCardProps = {
+  data: Movie;
+  movieId: number | string;
+};
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+function MovieCard({ data, movieId }: MovieCardProps) {
+  const { signedIn } = useProfile();
+  const formattedReleaseDate = formatDate(data.releaseDate);
+
   return (
     <div className={styles.card}>
       <a href={`/movies/${movieId}`}>
@@ -18,7 +37,10 @@ function MovieCard({ data, movieId }: { data: Movie; movieId: number | string })
           <p className={styles.title}>{data.title}</p>
         </div>
 
-        <p>{data.releaseDate}</p>
+        <div className={styles.footer}>
+          <p>{formattedReleaseDate}</p>
+          {signedIn && <Favorite movie={data} />}
+        </div>
       </div>
     </div>
   );

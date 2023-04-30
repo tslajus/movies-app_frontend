@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import { Header, Footer } from '..';
+import styles from './Layout.module.css';
 
 type Props = {
   children: ReactNode;
@@ -8,7 +9,7 @@ type Props = {
 
 function Layout({ children }: Props) {
   return (
-    <div>
+    <div className={styles.layout}>
       <Header />
       {children}
       <Footer />

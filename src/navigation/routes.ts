@@ -1,6 +1,7 @@
 export const ROUTES = {
   INDEX: '/',
-  MOVIES: '/movies',
-  MOVIE: '/movies/:movieId',
   LOGIN: '/login',
+  MOVIE: '/movies/:movieId',
+  MOVIES: '/movies',
+  MY_MOVIES: '/my-movies',
 };
