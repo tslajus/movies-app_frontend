@@ -21,6 +21,10 @@
     max-width: 100%;
 }
 
+.card a {
+    text-decoration: none;
+}
+
 .movieInfo {
     align-items: start;
     display: flex;
@@ -59,4 +63,7 @@
     justify-content: space-between;
     width: 100%;
 }
+
+
+
 

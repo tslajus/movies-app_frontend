@@ -1,5 +1,6 @@
 export { default as Button } from './Buttons/Button/Button';
 export { default as ButtonUnderline } from './Buttons/ButtonUnderline/ButtonUnderline';
+export { default as CoverAlternate } from './CoverAlternate/CoverAlternate';
 export { default as DescriptionBox } from './DescriptionBox/DescriptionBox';
 export { default as Favorite } from './Buttons/Favorite/Favorite';
 export { default as HamburgerBtn } from './Buttons/HamburgerButton/HamburgerButton';

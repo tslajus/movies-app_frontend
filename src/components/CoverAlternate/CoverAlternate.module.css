@@ -1,0 +1,12 @@
+.cover {
+    align-items: center;
+    background-color: var(--color-cover-alternative);
+    color: var(--color-font);
+    display: flex;
+    font-size: var(--font-lg);
+    justify-content: center;
+    text-align: center;
+    white-space: pre-wrap;
+    width: 100%;
+    aspect-ratio: 2/3;
+}

@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { StarIcon } from 'components/Icons';
 import { useProfile } from 'providers/ProfileProvider';
 
+import { CoverAlternate } from '../';
 import { Favorite } from '../';
 import styles from './MovieCard.module.css';
 
@@ -22,11 +24,16 @@ function MovieCard({ data, movieId }: MovieCardProps) {
   const { signedIn } = useProfile();
   const formattedReleaseDate = formatDate(data.releaseDate);
 
+  const brokenImg = <CoverAlternate title={data.title} />;
+  const [imgError, setImgError] = useState(false);
+
+  const handleImgError = () => {
+    setImgError(true);
+  };
+
   return (
     <div className={styles.card}>
-      <a href={`/movies/${movieId}`}>
-        <img alt={data.title} src={data.posterPath} />
-      </a>
+      <a href={`/movies/${movieId}`}>{imgError ? brokenImg : <img alt={data.title} src={data.posterPath} onError={handleImgError} />}</a>
 
       <div className={styles.movieInfo}>
         <div>
