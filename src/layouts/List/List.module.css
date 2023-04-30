@@ -1,12 +1,12 @@
 .container {
-      margin-top: 5rem;
+      margin-top: var(--size-3xl);
    }
 
 .list {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 2rem;
-    margin:0 5rem;
+    gap: var(--size-lg);
+    margin:0 var(--size-3xl);
 }
 
 

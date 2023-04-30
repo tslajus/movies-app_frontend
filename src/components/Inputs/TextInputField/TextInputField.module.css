@@ -5,15 +5,15 @@
 .inputField {
     background-color: var(--color-bg);
     border: 1px solid var(--color-font);
-    border-radius: 3px;
+    border-radius: var(--border-r-standart);
     box-sizing: border-box;
     color: var(--color-font);
-    padding: 1rem 1.5rem;
+    padding: var(--size-sm) var(--size-md);
     width: 100%;
 }
 
 .inputField::placeholder, .label {
-    color: var(--color-placeholder);
+    color: var(--color-grey-dark);
 }
 
 .inputField:active, .inputField:focus {
@@ -22,12 +22,12 @@
 }
 
 .label {
-   font-size: 1.2rem;
-   margin-bottom: .5rem;
+   font-size: var(--font-xs);;
+   margin-bottom: var(--size-xs);
 }
 
 .error {
     color: var(--color-red);
-    font-size: 1.2rem;
-    margin-top: .5rem;
+    font-size: var(--font-xs);
+    margin-top: var(--size-xs);
  }

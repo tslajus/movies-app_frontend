@@ -1,9 +1,9 @@
 .tag {
     background-color: var(--color-secondary);
-    border-radius: 3px;
+    border-radius: var(--border-r-standart);
     color: var(--color-font-dark);
-    font-size: 1.2rem;
+    font-size: var(--font-xs);;
     height: fit-content;
-    padding: 0.3rem .6rem;
+    padding: var(--size-xxs) var(--size-xs);
     width: fit-content;
 }

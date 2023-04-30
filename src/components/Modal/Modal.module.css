@@ -5,22 +5,22 @@
     top: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    z-index: 5;
-    backdrop-filter: saturate(200%) blur(4rem);
+    z-index: var(--z-index-top);
+    backdrop-filter: var(--backdrop-blur);
 
 }
 
 .box {
     align-items: center;
     background-color: var(--color-bg);
-    border-radius: 3px;
+    border-radius: var(--border-r-standart);
     display: flex;
     left: 50%;
     min-width: 30rem;
-    padding: 1.5rem;
+    padding: var(--size-md);
     position: fixed;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: var(--z-index-top);
 
 }

@@ -23,10 +23,10 @@
 .hamburgerBar::after {
   background-color: var(--color-secondary);
   display: block;
-  height: 0.3rem;
+  height: var(--size-xxs);
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
-  width: 2.5rem;
+  width: var(--size-xl);
 }
 
 

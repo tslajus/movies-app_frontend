@@ -4,21 +4,21 @@
     display: flex;
     justify-content: center;
     list-style: none;
-    padding: 1rem 0;
+    padding: var(--size-sm) 0;
     position: sticky;
-    backdrop-filter: saturate(200%) blur(4rem);
+    backdrop-filter: var(--backdrop-blur);
 }
 
 .item {
    align-items: center;
-   border: 1px solid var(--color-grey);
-   border-radius: 4px;
+   border: 1px solid var(--color-grey-light);
+   border-radius: var(--border-r-standart);
    display: flex;
-   height: 3rem;
+   height: var(--size-xxl);
    justify-content: center;
-   margin: .5rem;
-   min-width: 3rem;
-   padding: .5rem
+   margin: var(--size-xs);
+   min-width: var(--size-xxl);
+   padding: var(--size-xs);
 
 }
 
@@ -35,7 +35,7 @@
     display: flex;
     justify-content: center;
     margin: .5px;
-    width: 3rem;
+    width: var(--size-xxl);
 }
 
 .btn {
@@ -69,20 +69,20 @@
 
 @media screen and (max-width: 576px) {
     .item {
-       height: 2rem;
+       height: var(--size-lg);
         margin: .4rem;
-        min-width: 2rem;
+        min-width: var(--size-lg);
       }
 
     .dots {
-        width: 2rem;
+        width: var(--size-lg);
     }
 
     .btn {
-        font-size: 1.4rem;
+        font-size: var(--font-sm);
     }
 
     .btn svg {
-        height: 1rem;
+        height: var(--size-sm);
     }
   }

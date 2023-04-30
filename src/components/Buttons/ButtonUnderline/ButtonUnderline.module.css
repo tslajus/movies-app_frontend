@@ -1,6 +1,6 @@
 .navLink, .navLinkActive {
     color: var(--color-font);
-    margin: 1.5rem 2rem; 
+    margin: var(--size-md) var(--size-lg); 
     text-decoration: none;
 }
 
@@ -11,14 +11,14 @@
     color: var(--color-font);
     cursor: pointer;
     font: inherit;
-    margin: 1.5rem 2rem;
+    margin: var(--size-md) var(--size-lg);
     padding: 0; 
     text-decoration: none;
     width: auto;
 }
 
 .navLink:hover, .navLinkActive, .btn:hover {
-    filter: brightness(90%);
+    filter: var(--hover-brightness);
     text-decoration: underline;
     text-decoration-color: var(--color-secondary);
     text-decoration-thickness: 2px;

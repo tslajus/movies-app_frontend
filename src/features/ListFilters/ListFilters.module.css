@@ -2,15 +2,15 @@
     align-items: start;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr auto;
-    margin: 3rem 5rem 1rem;
-    gap: 2rem;
+    margin: var( --size-xxl) var( --size-3xl) var( --size-sm);
+    gap: var( --size-lg);
     
 }
 
 .buttons {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    gap: var( --size-lg);
 }
 
   @media screen and (max-width: 992px) {
@@ -50,7 +50,7 @@
    .buttons {
         display: flex;
         flex-direction: row;
-        gap: 2rem;
+        gap: var( --size-lg);
     }
 
     .buttons > * {
@@ -83,14 +83,3 @@
   }
 
 
-
-
-
-
-
-
-/* 1 card per row when screen size is less than 576px;
-2 cards per row when screen size is less than 768px;
-3 cards per row when screen size is less than 992px;
-5 cards per row when screen size is less than 1200px;
-6 cards per row when screen size is more than or equal to 1200px. */

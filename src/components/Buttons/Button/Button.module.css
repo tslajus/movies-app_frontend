@@ -1,16 +1,16 @@
 .btn {
     background-color: var(--color-secondary);
     border: none;
-    border-radius: 3px;
+    border-radius: var(--border-r-standart);
     color: var(--color-font-dark);
     cursor: pointer;
     display: inline-block;
     font: inherit;
     height: fit-content;
-    padding: 1rem 1.5rem;
+    padding: var(--size-sm) var(--size-md);
     width: fit-content;
 }
 
 .btn:hover {
-    filter: brightness(90%);
+    filter: var(--hover-brightness);
 }
