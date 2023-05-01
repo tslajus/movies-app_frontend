@@ -1,5 +1,5 @@
 .form {
-    align-items: start;
+    align-items: flex-start;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr auto;
     margin: var( --size-xxl) var( --size-3xl) var( --size-sm);

@@ -1,5 +1,5 @@
 .row {
-    align-items: start;
+    align-items: flex-start;
     display: flex;
     font-size: var(--font-sm);
     gap: 0;

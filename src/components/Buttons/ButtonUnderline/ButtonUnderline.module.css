@@ -5,7 +5,7 @@
 }
 
 .btn {
-    align-self: start;
+    align-self: flex-start;
     background: transparent;
     border: none;
     color: var(--color-font);
