@@ -6,6 +6,8 @@ import { Loader, MovieCard } from 'components';
 import { ListFilters, Pagination } from 'features';
 import { List } from 'layouts';
 
+import styles from './MoviesList.module.css';
+
 function MoviesList() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -51,9 +53,16 @@ function MoviesList() {
     return <MovieCard data={movie} key={movie.movieId} movieId={movie.movieId} />;
   });
 
+  const noMoviesText = (
+    <div className={styles.container}>
+      <h2 className={styles.noMoviesText}>No movies found matching your search criteria.</h2>
+    </div>
+  );
+
   return (
-    <main>
+    <main className={styles.container}>
       <ListFilters />
+      {movies.length === 0 && noMoviesText}
       <List>{renderedMovies}</List>
       <Pagination currentPage={activePage} totalPageCount={data.totalPages} onPageChange={handlePageChange} />
     </main>

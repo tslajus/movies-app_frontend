@@ -4,4 +4,6 @@
     display: flex;
     height: var(--size-3xl);
     justify-content: center;
+    width: 100%;
+
 }

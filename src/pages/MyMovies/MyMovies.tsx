@@ -45,7 +45,7 @@ function MyMovies() {
   return (
     <main className={styles.container}>
       <List>{renderedMovies}</List>
-      {personalMovies.totalPages > 1 && <Pagination currentPage={activePage} totalPageCount={totalPages} onPageChange={handlePageChange} />}
+      <Pagination currentPage={activePage} totalPageCount={totalPages} onPageChange={handlePageChange} />
     </main>
   );
 }

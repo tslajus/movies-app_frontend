@@ -10,6 +10,10 @@ type Props = Pagination & {
 function Pagination({ currentPage, totalPageCount, siblingCount = 1, onPageChange }: Props) {
   const paginationRange = usePagination({ currentPage, totalPageCount, siblingCount });
 
+  if (totalPageCount <= 1) {
+    return null;
+  }
+
   const handlePageChange = (selectedPage: number) => {
     onPageChange(Number(selectedPage));
   };

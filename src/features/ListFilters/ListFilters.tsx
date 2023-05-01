@@ -54,7 +54,6 @@ function ListFilters() {
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
-        console.log(values);
         setSearchParams(filterParams(new URLSearchParams(values)));
       }}
     >
