@@ -9,4 +9,10 @@
     white-space: pre-wrap;
     width: 100%;
     aspect-ratio: 2/3;
+    
+}
+
+.cover p {
+    user-select: none;
+    width: 80%;
 }
