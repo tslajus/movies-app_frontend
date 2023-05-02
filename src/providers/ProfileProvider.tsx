@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchPersonalMovies } from 'api/personalMovies';
+import jwt_decode from 'jwt-decode';
 
 import { userLogin } from '../api/user';
 
@@ -57,6 +58,21 @@ export const ProfileProvider: React.FC<ProfileProviderProps> = ({ children }) =>
     setSignedIn(false);
   };
 
+  const isTokenExpired = (token: string): boolean => {
+    try {
+      const decodedToken: any = jwt_decode(token);
+      const currentTime = Date.now() / 1000;
+
+      if (decodedToken.exp && decodedToken.exp < currentTime) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return true;
+    }
+  };
+
   useEffect(() => {
     const storedToken = localStorage.getItem('authToken');
     if (storedToken) {
@@ -101,6 +117,14 @@ export const ProfileProvider: React.FC<ProfileProviderProps> = ({ children }) =>
 
   useEffect(() => {
     fetchAllPersonalMovies();
+  }, [signedIn, token]);
+
+  useEffect(() => {
+    if (signedIn && token) {
+      if (isTokenExpired(token)) {
+        logout();
+      }
+    }
   }, [signedIn, token]);
 
   const refetchPersonalMovies = async (page?: number) => {
