@@ -47,7 +47,7 @@ function MovieCard({ data, movieId }: MovieCardProps) {
         ) : (
           <img alt={data.title} src={data.posterPath} style={isImgLoading ? { display: 'none' } : {}} onError={handleImgError} onLoad={handleImgLoad} />
         )}
-        {isImgLoading && <Loader backgroundSize="cover" isGray isTransparent />}
+        {isImgLoading && <Loader backgroundSize="cover" isGray isNoBackground isNoLoader />}
       </a>
 
       <div className={styles.movieInfo}>

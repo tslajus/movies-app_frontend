@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useProfile } from 'providers/ProfileProvider';
 import { List } from 'layouts';
 import { Loader } from 'components';
@@ -8,12 +8,26 @@ import styles from './MyMovies.module.css';
 
 function MyMovies() {
   const { personalMovies, refetchPersonalMovies, isLoading, isRefetching } = useProfile();
+  const [loaderVisible, setLoaderVisible] = useState(isLoading || isRefetching);
 
   useEffect(() => {
     refetchPersonalMovies();
   }, [refetchPersonalMovies]);
 
-  if (isLoading || isRefetching) {
+  useEffect(() => {
+    setLoaderVisible(true);
+    const timer = setTimeout(() => {
+      if (!isLoading && !isRefetching) {
+        setLoaderVisible(false);
+      }
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isLoading, isRefetching]);
+
+  if (loaderVisible) {
     return <Loader />;
   }
 

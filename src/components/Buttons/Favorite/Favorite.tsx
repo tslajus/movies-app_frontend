@@ -48,14 +48,14 @@ function Favorite({ movie, ...rest }: FavoriteProps): JSX.Element {
   if (isInPersonalMovies) {
     return (
       <button className={styles.btn} onClick={() => handleButtonClick(false)} {...rest}>
-        {isLoading ? <Loader backgroundSize="small" isFast isSmall isTransparent /> : <HeartMinus />}
+        {isLoading ? <Loader backgroundSize="small" isFast isNoBackground isSmall /> : <HeartMinus />}
       </button>
     );
   }
 
   return (
     <button className={styles.btn} onClick={() => handleButtonClick(true)} {...rest}>
-      {isLoading ? <Loader backgroundSize="small" isFast isSmall isTransparent /> : <HeartPlus />}
+      {isLoading ? <Loader backgroundSize="small" isFast isNoBackground isSmall /> : <HeartPlus />}
     </button>
   );
 }

@@ -49,9 +49,12 @@
     position: relative;
     
   }
+
+  .loaderHidden {
+    display: none;
+  }
   
-  
-  .loaderNormal {
+    .loaderNormal {
     height: 80px;
     width: 80px;
   }

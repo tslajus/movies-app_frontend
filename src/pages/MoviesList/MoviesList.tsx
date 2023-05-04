@@ -12,6 +12,7 @@ function MoviesList() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const activePage = Number(searchParams.get('page')) || 1;
+  const [isLoading, setIsLoading] = useState(true);
 
   const [filters, setFilters] = useState({
     title: searchParams.get('title') || '',
@@ -27,19 +28,32 @@ function MoviesList() {
     });
   }, [searchParams]);
 
-  const { data } = useQuery(
-    ['movies', activePage, filters.title, filters.genres, filters.sort],
-    () => fetchMovies(activePage, filters.title, filters.genres, filters.sort),
-    { keepPreviousData: true },
-  );
-
   const handlePageChange = async (selectedPage: number) => {
     const queryParams = new URLSearchParams(filters);
     queryParams.set('page', String(selectedPage));
     navigate(`/?${queryParams.toString()}`);
   };
 
-  if (!data) {
+  const { data } = useQuery(
+    ['movies', activePage, filters.title, filters.genres, filters.sort],
+    () => fetchMovies(activePage, filters.title, filters.genres, filters.sort),
+    { keepPreviousData: true, onSuccess: () => setIsLoading(false) },
+  );
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      if (data) {
+        setIsLoading(false);
+      }
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [data]);
+
+  if (isLoading) {
     return (
       <div>
         <Loader />
@@ -47,7 +61,7 @@ function MoviesList() {
     );
   }
 
-  const movies = data.movies;
+  const movies = data?.movies || [];
 
   const renderedMovies = movies.map((movie) => {
     return <MovieCard data={movie} key={movie.movieId} movieId={movie.movieId} />;
@@ -64,7 +78,7 @@ function MoviesList() {
       <ListFilters />
       {movies.length === 0 && noMoviesText}
       <List>{renderedMovies}</List>
-      <Pagination currentPage={activePage} totalPageCount={data.totalPages} onPageChange={handlePageChange} />
+      <Pagination currentPage={activePage} totalPageCount={data?.totalPages || 1} onPageChange={handlePageChange} />
     </main>
   );
 }

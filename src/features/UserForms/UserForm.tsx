@@ -64,7 +64,7 @@ const UserForm = ({ closeModal }: UserForm) => {
           </div>
 
           {isSubmitting ? (
-            <Loader backgroundSize="flexible" isGray isTransparent />
+            <Loader backgroundSize="flexible" isGray isNoBackground />
           ) : (
             <div className={styles.fields}>
               {currentForm === 'signup' ? <SignUpFields errors={errors} touched={touched} /> : <LoginFields errors={errors} touched={touched} />}

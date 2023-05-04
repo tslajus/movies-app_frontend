@@ -5,10 +5,11 @@ export type LoaderProps = {
   isFast?: boolean;
   isGray?: boolean;
   isSmall?: boolean;
-  isTransparent?: boolean;
+  isNoBackground?: boolean;
+  isNoLoader?: boolean;
 };
 
-function Loader({ isFast = false, isGray = false, isSmall = false, isTransparent = false, backgroundSize = 'fullScreen' }: LoaderProps) {
+function Loader({ isFast = false, isGray = false, isSmall = false, isNoBackground = false, isNoLoader = false, backgroundSize = 'fullScreen' }: LoaderProps) {
   const backgroundSizeClasses = {
     fullScreen: styles.containerFullScreen,
     cover: styles.containerCover,
@@ -17,11 +18,14 @@ function Loader({ isFast = false, isGray = false, isSmall = false, isTransparent
   };
 
   const containerClassName = `${styles.container} ${backgroundSizeClasses[backgroundSize]} ${
-    isTransparent ? styles.containerTransparent : styles.containerBlur
+    isNoBackground ? styles.containerTransparent : styles.containerBlur
   } `;
 
-  const loaderClassName = `${styles.loader} ${isSmall ? styles.loaderSmall : styles.loaderNormal} ${isFast ? styles.loaderFast : styles.loaderNormal}`;
-
+  const loaderClassName = ` ${
+    isNoLoader
+      ? styles.loaderHidden
+      : `${styles.loader} ${isSmall ? styles.loaderSmall : styles.loaderNormal} ${isFast ? styles.loaderFast : styles.loaderNormal}`
+  }`;
   const divClassName = `${styles.div} ${isGray ? styles.divGrey : styles.divColored}`;
 
   return (

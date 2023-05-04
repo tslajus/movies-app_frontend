@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchMovieDetails } from 'api/movies';
@@ -10,16 +10,31 @@ import styles from './MovieInfo.module.css';
 function MovieInfo() {
   const { movieId = '' } = useParams<{ movieId: string }>();
 
-  const { data } = useQuery(['movie', movieId], () => fetchMovieDetails(movieId));
+  const { data, isFetching } = useQuery(['movie', movieId], () => fetchMovieDetails(movieId));
   const [imgError, setImgError] = useState(false);
   const [isImgLoading, setIsImgLoading] = useState(true);
+  const [loaderVisible, setLoaderVisible] = useState(isFetching);
 
-  if (!data) {
+  useEffect(() => {
+    setLoaderVisible(true);
+    const timer = setTimeout(() => {
+      if (!isFetching) {
+        setLoaderVisible(false);
+      }
+    }, 400);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isFetching]);
+
+  if (loaderVisible) {
     return <Loader />;
   }
 
-  const { posterPath, backdropPath } = data;
-  const brokenImg = <CoverAlternate title={data.title} />;
+  const posterPath = data?.posterPath || '';
+  const backdropPath = data?.backdropPath || '';
+  const brokenImg = <CoverAlternate title={data?.title || ''} />;
 
   const handleImgLoad = () => {
     setIsImgLoading(false);
@@ -37,12 +52,12 @@ function MovieInfo() {
           {imgError ? (
             brokenImg
           ) : (
-            <img alt={data.title} src={posterPath} style={isImgLoading ? { display: 'none' } : {}} onError={handleImgError} onLoad={handleImgLoad} />
+            <img alt={data?.title || ''} src={posterPath} style={isImgLoading ? { display: 'none' } : {}} onError={handleImgError} onLoad={handleImgLoad} />
           )}
-          {isImgLoading && <Loader backgroundSize="cover" isGray isTransparent />}
+          {isImgLoading && <Loader backgroundSize="cover" isGray isNoBackground isNoLoader />}
         </div>
 
-        <InfoBox data={data} />
+        {data && <InfoBox data={data} />}
       </div>
       <div className={styles.backgroundOverlay} />
     </main>
