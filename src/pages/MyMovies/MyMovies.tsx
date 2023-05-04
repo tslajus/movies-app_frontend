@@ -1,42 +1,30 @@
 import { useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useProfile } from 'providers/ProfileProvider';
-import { MovieCard } from 'components';
-import { Pagination } from 'features';
+import { MovieCard, Loader } from 'components';
 import { List } from 'layouts';
 
 import styles from './MyMovies.module.css';
 
 function MyMovies() {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const activePage = Number(searchParams.get('page')) || 1;
-  const { personalMovies, refetchPersonalMovies } = useProfile();
-
-  const handlePageChange = async (selectedPage: number) => {
-    navigate(`/my-movies?page=${selectedPage}`);
-  };
+  const { personalMovies, refetchPersonalMovies, isLoading, isRefetching } = useProfile();
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      await refetchPersonalMovies(activePage);
-      if (personalMovies && activePage > personalMovies.totalPages) {
-        navigate(`/my-movies?page=${personalMovies.totalPages}`);
-      }
-    };
-    fetchMovies();
-  }, [activePage, refetchPersonalMovies, personalMovies, navigate]);
+    refetchPersonalMovies();
+  }, [refetchPersonalMovies]);
+
+  if (isLoading || isRefetching) {
+    return <Loader />;
+  }
 
   if (!personalMovies || personalMovies.movies.length === 0) {
     return (
-      <div className={styles.container}>
+      <div className={styles.emptyContainer}>
         <h2 className={styles.noMoviesText}>No movies added yet.</h2>
       </div>
     );
   }
 
   const movies = personalMovies.movies;
-  const totalPages = personalMovies.totalPages;
 
   const renderedMovies = movies.map((movie) => {
     return <MovieCard data={movie} key={movie.movieId} movieId={movie.movieId} />;
@@ -45,7 +33,6 @@ function MyMovies() {
   return (
     <main className={styles.container}>
       <List>{renderedMovies}</List>
-      <Pagination currentPage={activePage} totalPageCount={totalPages} onPageChange={handlePageChange} />
     </main>
   );
 }

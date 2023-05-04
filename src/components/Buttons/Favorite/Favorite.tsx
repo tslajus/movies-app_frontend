@@ -2,50 +2,60 @@ import { useEffect, useState } from 'react';
 import { useProfile } from 'providers/ProfileProvider';
 import { addPersonalMovie, deletePersonalMovie } from 'api/personalMovies';
 import { HeartPlus, HeartMinus } from 'components/Icons';
+import { LoaderIcon } from 'components';
 
 import styles from './Favorite.module.css';
 
 type FavoriteProps = {
   movie: Movie;
-  onMovieRemoved?: () => void;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-function Favorite({ movie, onMovieRemoved, ...rest }: FavoriteProps): JSX.Element {
-  const { token, allPersonalMovies, refetchPersonalMovies } = useProfile();
+function Favorite({ movie, ...rest }: FavoriteProps): JSX.Element {
+  const { token, personalMovies, refetchPersonalMovies } = useProfile();
   const [isInPersonalMovies, setIsInPersonalMovies] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const isInPersonalMovies = allPersonalMovies.some((personalMovie: Movie) => personalMovie.movieId === movie.movieId);
-    setIsInPersonalMovies(isInPersonalMovies);
-  }, [movie.movieId, token, allPersonalMovies]);
-
-  const handleAddMovie = async () => {
-    if (token) {
-      await addPersonalMovie(movie, token);
-      setIsInPersonalMovies(true);
-      await refetchPersonalMovies();
+    if (personalMovies) {
+      const isInPersonalMovies = personalMovies.movies.some((personalMovie: Movie) => personalMovie.movieId === movie.movieId);
+      setIsInPersonalMovies(isInPersonalMovies);
     }
-  };
+  }, [movie.movieId, token, personalMovies]);
 
-  const handleRemoveMovie = async () => {
+  const handleButtonClick = async (isAdding: boolean) => {
     if (token) {
-      await deletePersonalMovie(movie.movieId, token);
-      setIsInPersonalMovies(false);
+      setIsLoading(true);
+      const loadingTimer = new Promise((resolve) => setTimeout(resolve, 300));
+
+      await Promise.all([
+        loadingTimer,
+        (async () => {
+          if (isAdding) {
+            await addPersonalMovie(movie, token);
+            setIsInPersonalMovies(true);
+          } else {
+            await deletePersonalMovie(movie.movieId, token);
+            setIsInPersonalMovies(false);
+          }
+        })(),
+      ]);
+
+      setIsLoading(false);
       await refetchPersonalMovies();
     }
   };
 
   if (isInPersonalMovies) {
     return (
-      <button className={styles.btn} onClick={handleRemoveMovie} {...rest}>
-        <HeartMinus />
+      <button className={styles.btn} onClick={() => handleButtonClick(false)} {...rest}>
+        {isLoading ? <LoaderIcon /> : <HeartMinus />}
       </button>
     );
   }
 
   return (
-    <button className={styles.btn} onClick={handleAddMovie} {...rest}>
-      <HeartPlus />
+    <button className={styles.btn} onClick={() => handleButtonClick(true)} {...rest}>
+      {isLoading ? <LoaderIcon /> : <HeartPlus />}
     </button>
   );
 }

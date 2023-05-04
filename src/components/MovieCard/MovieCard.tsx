@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { StarIcon } from 'components/Icons';
 import { useProfile } from 'providers/ProfileProvider';
 
-import { CoverAlternate } from '../';
-import { Favorite } from '../';
+import { Favorite, CoverLoader, CoverAlternate } from '../';
 import styles from './MovieCard.module.css';
 
 type MovieCardProps = {
@@ -22,10 +21,14 @@ function formatDate(dateString: string) {
 
 function MovieCard({ data, movieId }: MovieCardProps) {
   const { signedIn } = useProfile();
+  const [isImgLoading, setIsImgLoading] = useState(true);
+  const [imgError, setImgError] = useState(false);
+  const brokenImg = <CoverAlternate title={data.title} />;
   const formattedReleaseDate = formatDate(data.releaseDate);
 
-  const brokenImg = <CoverAlternate title={data.title} />;
-  const [imgError, setImgError] = useState(false);
+  const handleImgLoad = () => {
+    setIsImgLoading(false);
+  };
 
   const handleImgError = () => {
     setImgError(true);
@@ -33,7 +36,14 @@ function MovieCard({ data, movieId }: MovieCardProps) {
 
   return (
     <div className={styles.card}>
-      <a href={`/movies/${movieId}`}>{imgError ? brokenImg : <img alt={data.title} src={data.posterPath} onError={handleImgError} />}</a>
+      <a href={`/movies/${movieId}`}>
+        {imgError ? (
+          brokenImg
+        ) : (
+          <img alt={data.title} src={data.posterPath} style={isImgLoading ? { display: 'none' } : {}} onError={handleImgError} onLoad={handleImgLoad} />
+        )}
+        {isImgLoading && <CoverLoader />}
+      </a>
 
       <div className={styles.movieInfo}>
         <div>

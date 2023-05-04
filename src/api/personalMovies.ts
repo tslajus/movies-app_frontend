@@ -26,9 +26,9 @@ export async function deletePersonalMovie(movieId: any, token: string): Promise<
   }
 }
 
-export async function fetchPersonalMovies(token: string, page?: number): Promise<Movies | null> {
+export async function fetchPersonalMovies(token: string): Promise<Movies | null> {
   try {
-    const { data } = await get<Movies>(`my-movies?${page && `page=${page}`}`, {
+    const { data } = await get<Movies>('my-movies', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

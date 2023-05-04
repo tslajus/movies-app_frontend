@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { useProfile } from 'providers/ProfileProvider';
-import { Button, ButtonUnderline } from 'components';
+import { Button, ButtonUnderline, UserFormLoader } from 'components';
 import { userSignUp, userLogin } from 'api/user';
 
 import { SignUpFields, SignUpSchema, signUpInitialValues } from './SignUpForm/SignUpForm';
@@ -14,6 +14,7 @@ type UserForm = {
 
 const UserForm = ({ closeModal }: UserForm) => {
   const [currentForm, setCurrentForm] = useState<'signup' | 'login'>('signup');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [welcomeMessage, setWelcomeMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { login } = useProfile();
@@ -29,6 +30,7 @@ const UserForm = ({ closeModal }: UserForm) => {
       initialValues={currentForm === 'signup' ? signUpInitialValues : loginInitialValues}
       validationSchema={currentForm === 'signup' ? SignUpSchema : LoginSchema}
       onSubmit={async (values: UserFormValues) => {
+        setIsSubmitting(true);
         setErrorMessage(null);
 
         if (currentForm === 'signup') {
@@ -51,6 +53,7 @@ const UserForm = ({ closeModal }: UserForm) => {
             setErrorMessage(loginResult.message);
           }
         }
+        setIsSubmitting(false);
       }}
     >
       {({ errors, touched }) => (
@@ -60,17 +63,22 @@ const UserForm = ({ closeModal }: UserForm) => {
             {welcomeMessage && <span className={styles.welcome}>{welcomeMessage}</span>}
           </div>
 
-          <div className={styles.fields}>
-            {currentForm === 'signup' ? <SignUpFields errors={errors} touched={touched} /> : <LoginFields errors={errors} touched={touched} />}
+          {isSubmitting ? (
+            <UserFormLoader />
+          ) : (
+            <div className={styles.fields}>
+              {currentForm === 'signup' ? <SignUpFields errors={errors} touched={touched} /> : <LoginFields errors={errors} touched={touched} />}
 
-            <div className={styles.question}>
-              {currentForm === 'signup' ? 'Already a user?' : 'Not a user yet?'}
-              <button className={styles.toggleBtn} type="button" onClick={toggleForm}>
-                {currentForm === 'signup' ? 'Sign-in!' : 'Sign-up!'}
-              </button>
+              <div className={styles.question}>
+                {currentForm === 'signup' ? 'Already a user?' : 'Not a user yet?'}
+                <button className={styles.toggleBtn} type="button" onClick={toggleForm}>
+                  {currentForm === 'signup' ? 'Sign-in!' : 'Sign-up!'}
+                </button>
+              </div>
+              {errorMessage && <span className={styles.error}>{errorMessage}</span>}
             </div>
-            {errorMessage && <span className={styles.error}>{errorMessage}</span>}
-          </div>
+          )}
+
           <div className={styles.footer}>
             <ButtonUnderline text="Cancel" onClick={closeModal} /> <Button text={currentForm === 'signup' ? 'Sign Up' : 'Login'} type="submit" />
           </div>
