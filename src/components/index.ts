@@ -6,7 +6,6 @@ export { default as Favorite } from './Buttons/Favorite/Favorite';
 export { default as HamburgerBtn } from './Buttons/HamburgerButton/HamburgerButton';
 export { default as InputController } from './Inputs/Controller/InputController';
 export { default as Modal } from './Modal/Modal';
-export { default as MovieCard } from './MovieCard/MovieCard';
 export { default as SelectField } from './Inputs/SelectField/SelectField';
 export { default as StatLine } from './StatLine/StatLine';
 export { default as Tag } from './Tag/Tag';

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { StarIcon } from 'components/Icons';
 import { useProfile } from 'providers/ProfileProvider';
 
-import { Favorite, Loader, CoverAlternate } from '../';
+import { Favorite, Loader, CoverAlternate } from '../../components';
 import styles from './MovieCard.module.css';
 
 type MovieCardProps = {

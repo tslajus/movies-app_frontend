@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchMovies } from 'api/movies';
-import { Loader, MovieCard } from 'components';
-import { ListFilters, Pagination } from 'features';
+import { Loader } from 'components';
+import { ListFilters, MovieCard, Pagination } from 'features';
 import { List } from 'layouts';
 
 import styles from './MoviesList.module.css';

@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useProfile } from 'providers/ProfileProvider';
-import { MovieCard, Loader } from 'components';
 import { List } from 'layouts';
+import { Loader } from 'components';
+import { MovieCard } from 'features';
 
 import styles from './MyMovies.module.css';
 
