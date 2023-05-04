@@ -28,8 +28,6 @@ function ListFilters() {
     sort: searchParams.get('sort') || '',
   };
 
-  console.log(initialValues);
-
   const genreOptions = genreData?.map((genre) => ({
     value: genre.id.toString(),
     label: genre.name,
