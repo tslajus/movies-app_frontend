@@ -29,7 +29,12 @@ function MoviesList() {
   }, [searchParams]);
 
   const handlePageChange = async (selectedPage: number) => {
-    const queryParams = new URLSearchParams(filters);
+    const queryParams = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) {
+        queryParams.set(key, value);
+      }
+    });
     queryParams.set('page', String(selectedPage));
     navigate(`/?${queryParams.toString()}`);
   };
@@ -37,7 +42,7 @@ function MoviesList() {
   const { data } = useQuery(
     ['movies', activePage, filters.title, filters.genres, filters.sort],
     () => fetchMovies(activePage, filters.title, filters.genres, filters.sort),
-    { keepPreviousData: true, onSuccess: () => setIsLoading(false) },
+    { keepPreviousData: true, onSuccess: () => setIsLoading(false), staleTime: Infinity, cacheTime: 1000 * 60 * 60 * 24 },
   );
 
   useEffect(() => {

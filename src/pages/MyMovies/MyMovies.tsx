@@ -7,12 +7,8 @@ import { MovieCard } from 'features';
 import styles from './MyMovies.module.css';
 
 function MyMovies() {
-  const { personalMovies, refetchPersonalMovies, isLoading, isRefetching } = useProfile();
+  const { personalMovies, isLoading, isRefetching } = useProfile();
   const [loaderVisible, setLoaderVisible] = useState(isLoading || isRefetching);
-
-  useEffect(() => {
-    refetchPersonalMovies();
-  }, [refetchPersonalMovies]);
 
   useEffect(() => {
     setLoaderVisible(true);

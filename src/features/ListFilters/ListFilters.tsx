@@ -8,8 +8,19 @@ import { useSearchParams } from 'react-router-dom';
 import styles from './ListFilters.module.css';
 
 function ListFilters() {
-  const { data: genreData } = useQuery(['genres'], () => fetchGenres());
-  const { data: sortOptionsData } = useQuery(['sort-options'], () => fetchSortOptions());
+  const { data: genreData } = useQuery(['genres'], () => fetchGenres(), {
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 60 * 24,
+  });
+  const { data: sortOptionsData } = useQuery(
+    ['sort-options'],
+    () => fetchSortOptions(),
+
+    {
+      staleTime: Infinity,
+      cacheTime: 1000 * 60 * 60 * 24,
+    },
+  );
 
   const initialValues = {
     title: '',
