@@ -1,0 +1,138 @@
+.container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  
+  }
+  
+  .containerFullScreen {
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: var(--z-index-top);
+  }
+  
+  .containerCover {
+    background-color: transparent;
+    width: 100%;
+    aspect-ratio: 2/3;
+  }
+  
+  .containerSmall {
+    background-color: rgb(30, 136, 103);
+    display: inline-block;
+    height: var(--size-xl);
+    width: var(--size-xl);
+    z-index: var(--z-index-top);
+
+ 
+   
+  }
+  
+  .containerFlexible {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .containerTransparent {
+    background-color: transparent;
+  }
+
+  .containerBlur {
+    backdrop-filter: var(--backdrop-blur);
+  }
+  
+
+  .loader {
+    position: relative;
+    
+  }
+  
+  
+  .loaderNormal {
+    height: 80px;
+    width: 80px;
+  }
+
+  
+  .loaderFast div {
+    animation: lds-ring-fast 0.8s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  }
+  
+  .loaderNormal div {
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  }
+ 
+  .loaderSmall div {
+    border-width: 4px;
+    height: var(--size-xl);
+    margin: 0;
+    width: var(--size-xl);
+  }
+  
+  .div {
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: block;
+    height: 64px;
+    margin: 8px;
+    position: absolute;
+    width: 64px;
+  }
+  
+  .divColored {
+    border: 8px solid var(--color-secondary);
+    border-color: var(--color-secondary) transparent transparent transparent;
+  }
+  
+  .divGrey {
+    border: 8px solid var(--color-grey-dark);
+    border-color: var(--color-grey-dark) transparent transparent transparent;
+  }
+ 
+  
+  
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loader div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  
+  .loader div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  
+  .loader div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+
+    
+  @keyframes lds-ring-fast {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loaderFast div:nth-child(1) {
+    animation-delay: -0.3s;
+  }
+  
+  .loaderFast div:nth-child(2) {
+    animation-delay: -0.2s;
+  }
+  
+  .loaderFast div:nth-child(3) {
+    animation-delay: -0.1s;
+  }

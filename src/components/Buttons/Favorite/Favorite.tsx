@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useProfile } from 'providers/ProfileProvider';
 import { addPersonalMovie, deletePersonalMovie } from 'api/personalMovies';
 import { HeartPlus, HeartMinus } from 'components/Icons';
-import { LoaderIcon } from 'components';
+import { Loader } from 'components';
 
 import styles from './Favorite.module.css';
 
@@ -48,14 +48,14 @@ function Favorite({ movie, ...rest }: FavoriteProps): JSX.Element {
   if (isInPersonalMovies) {
     return (
       <button className={styles.btn} onClick={() => handleButtonClick(false)} {...rest}>
-        {isLoading ? <LoaderIcon /> : <HeartMinus />}
+        {isLoading ? <Loader backgroundSize="small" isFast isSmall isTransparent /> : <HeartMinus />}
       </button>
     );
   }
 
   return (
     <button className={styles.btn} onClick={() => handleButtonClick(true)} {...rest}>
-      {isLoading ? <LoaderIcon /> : <HeartPlus />}
+      {isLoading ? <Loader backgroundSize="small" isFast isSmall isTransparent /> : <HeartPlus />}
     </button>
   );
 }

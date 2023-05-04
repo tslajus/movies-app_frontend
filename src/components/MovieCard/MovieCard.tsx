@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { StarIcon } from 'components/Icons';
 import { useProfile } from 'providers/ProfileProvider';
 
-import { Favorite, CoverLoader, CoverAlternate } from '../';
+import { Favorite, Loader, CoverAlternate } from '../';
 import styles from './MovieCard.module.css';
 
 type MovieCardProps = {
@@ -32,6 +32,7 @@ function MovieCard({ data, movieId }: MovieCardProps) {
 
   const handleImgError = () => {
     setImgError(true);
+    handleImgLoad();
   };
 
   return (
@@ -42,7 +43,7 @@ function MovieCard({ data, movieId }: MovieCardProps) {
         ) : (
           <img alt={data.title} src={data.posterPath} style={isImgLoading ? { display: 'none' } : {}} onError={handleImgError} onLoad={handleImgLoad} />
         )}
-        {isImgLoading && <CoverLoader />}
+        {isImgLoading && <Loader backgroundSize="cover" isGray isTransparent />}
       </a>
 
       <div className={styles.movieInfo}>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { useProfile } from 'providers/ProfileProvider';
-import { Button, ButtonUnderline, UserFormLoader } from 'components';
+import { Button, ButtonUnderline, Loader } from 'components';
 import { userSignUp, userLogin } from 'api/user';
 
 import { SignUpFields, SignUpSchema, signUpInitialValues } from './SignUpForm/SignUpForm';
@@ -64,7 +64,7 @@ const UserForm = ({ closeModal }: UserForm) => {
           </div>
 
           {isSubmitting ? (
-            <UserFormLoader />
+            <Loader backgroundSize="flexible" isGray isTransparent />
           ) : (
             <div className={styles.fields}>
               {currentForm === 'signup' ? <SignUpFields errors={errors} touched={touched} /> : <LoginFields errors={errors} touched={touched} />}
