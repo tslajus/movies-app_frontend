@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Formik, Form } from 'formik';
 import { Button, InputController } from 'components';
@@ -8,6 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import styles from './ListFilters.module.css';
 
 function ListFilters() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { data: genreData } = useQuery(['genres'], () => fetchGenres(), {
     staleTime: Infinity,
     cacheTime: 1000 * 60 * 60 * 24,
@@ -23,10 +23,12 @@ function ListFilters() {
   );
 
   const initialValues = {
-    title: '',
-    genres: '',
-    sort: '',
+    title: searchParams.get('title') || '',
+    genres: searchParams.get('genres')?.split(',') || [],
+    sort: searchParams.get('sort') || '',
   };
+
+  console.log(initialValues);
 
   const genreOptions = genreData?.map((genre) => ({
     value: genre.id.toString(),
@@ -38,34 +40,17 @@ function ListFilters() {
     label: sortOption.name,
   }));
 
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const filterParams = (params: URLSearchParams): URLSearchParams => {
-    const filteredParams = new URLSearchParams();
-    params.forEach((value, key) => {
-      if (value) {
-        filteredParams.set(key, value);
-      }
-    });
-    return filteredParams;
-  };
-
-  useEffect(() => {
-    const initialParams = {
-      title: searchParams.get('title') || '',
-      genres: searchParams.get('genres') || '',
-      sort: searchParams.get('sort') || '',
-    };
-    initialValues.title = initialParams.title;
-    initialValues.genres = initialParams.genres;
-    initialValues.sort = initialParams.sort;
-  }, [searchParams]);
-
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
-        setSearchParams(filterParams(new URLSearchParams(values)));
+        const params = new URLSearchParams();
+        params.set('title', values.title);
+        params.set('sort', values.sort);
+        if (values.genres.length > 0) {
+          params.set('genres', values.genres.join(','));
+        }
+        setSearchParams(params);
       }}
     >
       {({ setFieldValue }) => (
