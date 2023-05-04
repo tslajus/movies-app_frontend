@@ -7,6 +7,7 @@ function InfoBox({ data }: { data: MovieDetails }) {
   const formattedRevenue = `$${data.revenue.toLocaleString()}`;
   const formattedRuntime = `${data.runtime} min`;
   const formattedCompanies = data.productionCompanies.map((company: Company) => company.name).join(', ');
+  const formattedVoteAverage = Math.round(data.voteAverage * 10) / 10;
   const genreTags = data.genres.map((genre: Genre) => {
     return <Tag genre={genre.name} key={genre.id} />;
   });
@@ -21,7 +22,7 @@ function InfoBox({ data }: { data: MovieDetails }) {
 
       <dl className={styles.statistics}>
         <StatLine name="Duration" value={formattedRuntime} />
-        <StatLine name="Vote average" value={data.voteAverage} />
+        <StatLine name="Vote average" value={formattedVoteAverage} />
         <StatLine name="Vote count" value={data.voteCount} />
         <StatLine name="Budget" value={formattedBudget} />
         <StatLine name="Revenue" value={formattedRevenue} />
