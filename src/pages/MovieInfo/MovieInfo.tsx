@@ -9,14 +9,16 @@ import styles from './MovieInfo.module.css';
 
 function MovieInfo() {
   const { movieId = '' } = useParams<{ movieId: string }>();
-
   const { data, isFetching } = useQuery(['movie', movieId], () => fetchMovieDetails(movieId));
   const [imgError, setImgError] = useState(false);
   const [isImgLoading, setIsImgLoading] = useState(true);
   const [loaderVisible, setLoaderVisible] = useState(isFetching);
 
   useEffect(() => {
-    setLoaderVisible(true);
+    if (isFetching) {
+      setLoaderVisible(true);
+    }
+
     const timer = setTimeout(() => {
       if (!isFetching) {
         setLoaderVisible(false);
@@ -46,7 +48,7 @@ function MovieInfo() {
   };
 
   return (
-    <main className={styles.container} style={{ backgroundImage: `url(${backdropPath})` }}>
+    <main className={styles.container}>
       <div className={styles.movieBox}>
         <div className={styles.poster}>
           {imgError ? (
@@ -60,7 +62,23 @@ function MovieInfo() {
         {data && <InfoBox data={data} />}
       </div>
       <div className={styles.backgroundOverlay} />
+      <div className={styles.backgroundImg} style={{ backgroundImage: `url(${backdropPath})` }} />
     </main>
+    // <main className={styles.container} style={{ backgroundImage: `url(${backdropPath})` }}>
+    //   <div className={styles.movieBox}>
+    //     <div className={styles.poster}>
+    //       {imgError ? (
+    //         brokenImg
+    //       ) : (
+    //         <img alt={data?.title || ''} src={posterPath} style={isImgLoading ? { display: 'none' } : {}} onError={handleImgError} onLoad={handleImgLoad} />
+    //       )}
+    //       {isImgLoading && <Loader backgroundSize="cover" isGray isNoBackground isNoLoader />}
+    //     </div>
+
+    //     {data && <InfoBox data={data} />}
+    //   </div>
+    //   <div className={styles.backgroundOverlay} />
+    // </main>
   );
 }
 

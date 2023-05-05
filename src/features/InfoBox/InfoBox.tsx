@@ -1,22 +1,41 @@
-import { StatLine, DescriptionBox, Tag } from 'components';
+import { useNavigate } from 'react-router-dom';
+import { useProfile } from 'providers/ProfileProvider';
+import { StatLine, DescriptionBox, Favorite, Tag } from 'components';
 
 import styles from './InfoBox.module.css';
 
 function InfoBox({ data }: { data: MovieDetails }) {
+  const { signedIn } = useProfile();
+
   const formattedBudget = `$${data.budget.toLocaleString()}`;
   const formattedRevenue = `$${data.revenue.toLocaleString()}`;
   const formattedRuntime = `${data.runtime} min`;
   const formattedCompanies = data.productionCompanies.map((company: Company) => company.name).join(', ');
   const formattedVoteAverage = Math.round(data.voteAverage * 10) / 10;
+
+  const navigate = useNavigate();
+
+  const handleTagClick = (genreId: string) => {
+    navigate(`/movies?genres=${genreId}`);
+  };
+
   const genreTags = data.genres.map((genre: Genre) => {
-    return <Tag genre={genre.name} key={genre.id} />;
+    return <Tag genre={genre.name} key={genre.id} onClick={() => handleTagClick(genre.id.toString())} />;
   });
 
   return (
     <div>
-      <h2 className={styles.title}>
-        {data.title} <span>({data.releaseDate})</span>
-      </h2>
+      <div className={styles.header}>
+        {signedIn && (
+          <div className={styles.icon}>
+            <Favorite movie={data} />
+          </div>
+        )}
+
+        <h2 className={styles.title}>
+          {data.title} <span>({data.releaseDate})</span>
+        </h2>
+      </div>
       <h3 className={styles.tagline}>{data.tagline}</h3>
       <div className={styles.tags}>{genreTags}</div>
 

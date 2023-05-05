@@ -7,7 +7,7 @@ import { Loader } from 'components';
 import styles from './Favorite.module.css';
 
 type FavoriteProps = {
-  movie: Movie;
+  movie: Movie | MovieDetails;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 function Favorite({ movie, ...rest }: FavoriteProps): JSX.Element {

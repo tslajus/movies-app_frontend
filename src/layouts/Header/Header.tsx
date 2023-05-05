@@ -40,6 +40,7 @@ function Header() {
 
   const handleClickLogout = () => {
     logout();
+    setIsHamburgerOpen(false);
   };
 
   const renderedNav = (

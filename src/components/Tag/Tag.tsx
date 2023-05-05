@@ -1,7 +1,16 @@
 import styles from './Tag.module.css';
 
-function Tag({ genre }: { genre: string }) {
-  return <div className={styles.tag}>{genre}</div>;
+interface TagProps {
+  genre: string;
+  onClick?: () => void;
+}
+
+function Tag({ genre, onClick }: TagProps) {
+  return (
+    <div className={styles.tag} onClick={onClick}>
+      {genre}
+    </div>
+  );
 }
 
 export default Tag;

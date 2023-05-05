@@ -1,13 +1,10 @@
 .container {
-    background-position: right -20rem top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100vh;
+    flex:1;
     padding: var(--size-2xl) var(--size-3xl);
     position: relative;
-    z-index: var(--z-index-bottom);
     
 }
+
 
 .movieBox {
     display: flex;
@@ -24,6 +21,18 @@
 }
 
 
+.backgroundImg {
+    background-position: right -20rem top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%; 
+    z-index: var(--z-index-bottom);
+}
+
 .backgroundOverlay {
     background-image: linear-gradient(90deg,#000 150px,rgba(26,26,26,.84) 90%);
     height: 100%;
@@ -31,7 +40,7 @@
     position: absolute;
     top: 0;
     width: 100%;
-   z-index: var(--z-index-negative);
+    z-index: var(--z-index-negative);
 }
 
 @media screen and (max-width: 768px) {
